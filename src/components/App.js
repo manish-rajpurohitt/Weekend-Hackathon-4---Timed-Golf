@@ -3,7 +3,7 @@ import "../styles/App.css";
 class Timer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { time: 0, x: 0, y: 0, renderr: false };
+    this.state = { time: 0, x: 0, y: 0 };
     this.handleStart = () => {
       this.start = Date.now();
       this.interval = setInterval(
@@ -12,7 +12,6 @@ class Timer extends React.Component {
         1000
       );
       document.addEventListener("keydown", () => this.handleKeys(event));
-      this.setState({ renderr: true });
     };
     this.handleKeys = (event) => {
       if (
@@ -69,17 +68,13 @@ class Timer extends React.Component {
           className="ball"
           style={{ left: `${this.state.x}px`, top: `${this.state.y}px` }}
         ></div>
-        {this.state.renderr ? (
-          <>
-            <div className="heading-timer">{this.state.time}</div>
+        <div className="heading-timer">{this.state.time}</div>
 
-            <div className="hole"></div>
-          </>
-        ) : (
-          <button className="start" onClick={() => this.handleStart()}>
-            start
-          </button>
-        )}
+        <div className="hole"></div>
+
+        <button className="start" onClick={() => this.handleStart()}>
+          start
+        </button>
       </>
     );
   }
